@@ -1,6 +1,10 @@
 import { useState } from 'react'
 import './App.css'
 import LayoutOverlay from './assets/components/LayoutOverlay';
+import Login from './assets/components/login';
+import Registro from './assets/components/registro';
+import Dashboard from './assets/components/dashboard';
+import PrivateRoute from './assets/components/privateRoute';
 import Sidebar from './assets/components/sidebar';
 import Gastos from './assets/components/gastos';
 import Ingresos from './assets/components/ingresos';
