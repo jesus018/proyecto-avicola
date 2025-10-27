@@ -36,12 +36,29 @@ class Usuario(AbstractUser):
         auto_now=True, verbose_name='Última Actualización')
     esta_activo = models.BooleanField(default=True, verbose_name='Activo')
 
+    # Evitar conflictos con el modelo User predeterminado
+    groups = models.ManyToManyField(
+        'auth.Group',
+        verbose_name='grupos',
+        blank=True,
+        help_text='Los grupos a los que pertenece este usuario.',
+        related_name='usuario_set',
+        related_query_name='usuario',
+    )
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        verbose_name='permisos de usuario',
+        blank=True,
+        help_text='Permisos específicos para este usuario.',
+        related_name='usuario_set',
+        related_query_name='usuario',
+    )
+
     # Configuración
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
 
     class Meta:
-        """ Clase meta del modelo usuario. """
         verbose_name = 'Usuario'
         verbose_name_plural = 'Usuarios'
         ordering = ['-fecha_creacion']
