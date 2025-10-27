@@ -1,4 +1,4 @@
-""" Setting del proyecto avicola."""
+""" Settings del proyecto. """
 
 from pathlib import Path
 from datetime import timedelta
@@ -36,7 +36,7 @@ INSTALLED_APPS = [
 
     # Apps del proyecto
     'accounts',  # App para autenticación de usuarios
-    # 'finanzas',  # App para el negocio de gallinas
+    'finanzas',  # App para el negocio de gallinas
 ]
 
 MIDDLEWARE = [
@@ -117,6 +117,9 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Modelo de usuario personalizado
+AUTH_USER_MODEL = 'accounts.Usuario'
+
 # Configuración CORS
 CORS_ALLOWED_ORIGINS = config(
     'CORS_ALLOWED_ORIGINS',
@@ -168,6 +171,3 @@ if not DEBUG:
     SECURE_HSTS_SECONDS = 31536000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
-
-# Custom User Model
-AUTH_USER_MODEL = 'accounts.Usuario'
