@@ -36,7 +36,7 @@ INSTALLED_APPS = [
 
     # Apps del proyecto
     'accounts',  # App para autenticación de usuarios
-    # 'finanzas',  # App para el negocio de gallinas
+    'finanzas',  # App para el negocio de gallinas
 ]
 
 MIDDLEWARE = [
