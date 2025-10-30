@@ -29,7 +29,7 @@ urlpatterns = [
     path('api/auth/', include('accounts.urls')),
 
     # API de finanzas (gallinas ponedoras)
-    # path('api/finanzas/', include('finanzas.urls')),
+    path('api/finanzas/', include('finanzas.urls')),
 
     # Documentación de la API
     path('swagger/', schema_view.with_ui('swagger',
