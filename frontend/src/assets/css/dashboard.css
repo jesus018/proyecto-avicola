@@ -27,20 +27,6 @@
 }
 
 /* Navbar */
-.dashboard-navbar {}
-
-.navbar-contenido {
-  /* max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 1.5rem; */
-}
-
-.navbar-header {
-  /* display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 4rem; */
-}
 
 .navbar-titulo {
   background: linear-gradient(135deg, #ff9a56 0%, #ff6b35 100%);

@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../css/dashboard.css';
+import '../css/dashboard.css';
 import authService from '../../services/authService';
+import finanzasService from '../../services/finanzasService';
 import LayoutOverlay from '../components/LayoutOverlay';
 import Gastos from '../components/gastos';
 import Ingresos from '../components/ingresos';
 import Resumen from '../components/resumen';
 import Exportar from '../components/exportar';
 
-
-
 const Dashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [resumenFinanciero, setResumenFinanciero] = useState(null);
   const [isGastosOpen, setIsGastosOpen] = useState(false);
   const [isIngresosOpen, setIsIngresosOpen] = useState(false);
   const [isResumenOpen, setIsResumenOpen] = useState(false);
@@ -21,19 +21,29 @@ const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('');
 
   useEffect(() => {
-    const cargarPerfil = async () => {
+    const cargarDatos = async () => {
       try {
         const perfil = await authService.getPerfil();
         setUser(perfil);
+        await cargarResumenFinanciero();
       } catch (error) {
-        console.error('Error al cargar perfil:', error);
+        console.error('Error al cargar datos:', error);
       } finally {
         setLoading(false);
       }
     };
 
-    cargarPerfil();
+    cargarDatos();
   }, []);
+
+  const cargarResumenFinanciero = async () => {
+    try {
+      const resumen = await finanzasService.getResumen();
+      setResumenFinanciero(resumen);
+    } catch (error) {
+      console.error('Error al cargar resumen financiero:', error);
+    }
+  };
 
   const handleLogout = async () => {
     await authService.logout();
@@ -46,7 +56,7 @@ const Dashboard = () => {
     setIsResumenOpen(false);
     setIsExportarOpen(false);
     setActiveTab('accion-gasto');
-  }
+  };
 
   const mostrarIngresosClick = () => {
     setIsIngresosOpen(true);
@@ -54,7 +64,7 @@ const Dashboard = () => {
     setIsResumenOpen(false);
     setIsExportarOpen(false);
     setActiveTab('accion-ingreso');
-  }
+  };
 
   const mostrarResumenClick = () => {
     setIsResumenOpen(true);
@@ -62,7 +72,7 @@ const Dashboard = () => {
     setIsIngresosOpen(false);
     setIsExportarOpen(false);
     setActiveTab('accion-resumen');
-  }
+  };
 
   const mostrarConfiguracionClick = () => {
     setIsExportarOpen(true);
@@ -70,7 +80,16 @@ const Dashboard = () => {
     setIsIngresosOpen(false);
     setIsResumenOpen(false);
     setActiveTab('accion-configuracion');
-  }
+  };
+
+  // Función para actualizar el resumen después de agregar/eliminar datos
+  const actualizarResumen = () => {
+    cargarResumenFinanciero();
+  };
+
+  const formatMoney = (value) => {
+    return `$${parseFloat(value || 0).toFixed(2)}`;
+  };
 
   if (loading) {
     return (
@@ -92,14 +111,6 @@ const Dashboard = () => {
                   <h1>🐔 Control Financiero</h1>
                   <p>Empresa de Gallinas Ponedoras</p>
                 </div>
-                {/* <div className="navbar-acciones">
-                <span className="usuario-nombre">
-                  {user?.first_name} {user?.last_name}
-                </span>
-                <button onClick={handleLogout} className="btn-cerrar-sesion">
-                  Cerrar Sesión
-                </button>
-              </div> */}
               </div>
             </div>
           </nav>
@@ -118,9 +129,6 @@ const Dashboard = () => {
                   </p>
                 </div>
                 <div className="tarjeta-acciones">
-                  {/* <span className="usuario-nombre">
-                    {user?.first_name} {user?.last_name}
-                  </span> */}
                   <button onClick={handleLogout} className="btn-cerrar-sesion">
                     Cerrar Sesión
                   </button>
@@ -174,7 +182,9 @@ const Dashboard = () => {
                       </div>
                       <div className="estadistica-info">
                         <dt className="estadistica-etiqueta">Total Ingresos</dt>
-                        <dd className="estadistica-monto">$0.00</dd>
+                        <dd className="estadistica-monto">
+                          {formatMoney(resumenFinanciero?.total_ingresos)}
+                        </dd>
                       </div>
                     </div>
                   </div>
@@ -190,7 +200,9 @@ const Dashboard = () => {
                       </div>
                       <div className="estadistica-info">
                         <dt className="estadistica-etiqueta">Gastos Totales</dt>
-                        <dd className="estadistica-monto">$0.00</dd>
+                        <dd className="estadistica-monto">
+                          {formatMoney(resumenFinanciero?.total_gastos)}
+                        </dd>
                       </div>
                     </div>
                   </div>
@@ -206,7 +218,18 @@ const Dashboard = () => {
                       </div>
                       <div className="estadistica-info">
                         <dt className="estadistica-etiqueta">Balance</dt>
-                        <dd className="estadistica-monto">$0.00</dd>
+                        <dd className="estadistica-monto">
+                          {formatMoney(resumenFinanciero?.ganancia)}
+                        </dd>
+                        {resumenFinanciero && (
+                          <small style={{
+                            opacity: 0.9,
+                            fontSize: '0.75rem',
+                            color: resumenFinanciero.ganancia >= 0 ? '#90EE90' : '#FFB6C1'
+                          }}>
+                            {resumenFinanciero.ganancia >= 0 ? '✓ Positivo' : '✗ Negativo'}
+                          </small>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -218,7 +241,8 @@ const Dashboard = () => {
                 <div className="tarjeta-contenido">
                   <h3 className="acciones-titulo">Acciones Rápidas</h3>
                   <div className="acciones-grid">
-                    <button className={`accion-btn accion-ingreso ${activeTab === 'accion-ingreso' ? 'active' : ''}`}
+                    <button
+                      className={`accion-btn accion-ingreso ${activeTab === 'accion-ingreso' ? 'active' : ''}`}
                       onClick={mostrarIngresosClick}
                     >
                       <svg className="accion-icono" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -226,7 +250,8 @@ const Dashboard = () => {
                       </svg>
                       Registrar Ingreso
                     </button>
-                    <button className={`accion-btn accion-gasto ${activeTab === 'accion-gasto' ? 'active' : ''}`}
+                    <button
+                      className={`accion-btn accion-gasto ${activeTab === 'accion-gasto' ? 'active' : ''}`}
                       onClick={mostrarGastosClick}
                     >
                       <svg className="accion-icono" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -234,7 +259,8 @@ const Dashboard = () => {
                       </svg>
                       Registrar Gasto
                     </button>
-                    <button className={`accion-btn accion-resumen ${activeTab === 'accion-resumen' ? 'active' : ''}`}
+                    <button
+                      className={`accion-btn accion-resumen ${activeTab === 'accion-resumen' ? 'active' : ''}`}
                       onClick={mostrarResumenClick}
                     >
                       <svg className="accion-icono" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -242,38 +268,51 @@ const Dashboard = () => {
                       </svg>
                       Ver Resumen
                     </button>
-                    <button className={`accion-btn accion-configuracion ${activeTab === 'accion-configuracion' ? 'active' : ''}`}
+                    <button
+                      className={`accion-btn accion-configuracion ${activeTab === 'accion-configuracion' ? 'active' : ''}`}
                       onClick={mostrarConfiguracionClick}
                     >
                       <svg className="accion-icono" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
-                      Configuración
-
+                      Exportar
                     </button>
                   </div>
                 </div>
               </div>
 
               <div className="tab-botones">
-                {
-                  isIngresosOpen ? (
-                    <Ingresos isOpen={isIngresosOpen} onClose={() => setIsIngresosOpen(false)} />
-                  ) : isGastosOpen ? (
-                    <Gastos isOpen={isGastosOpen} onClose={() => setIsGastosOpen(false)} />
-                  ) : isResumenOpen ? (
-                    <Resumen isOpen={isResumenOpen} onClose={() => setIsResumenOpen(false)} />
-                  ) : isExportarOpen ? (
-                    <Exportar isOpen={isExportarOpen} onClose={() => setIsExportarOpen(false)} />
-                  ) : <LayoutOverlay />
-                }
+                {isIngresosOpen ? (
+                  <Ingresos
+                    isOpen={isIngresosOpen}
+                    onClose={() => setIsIngresosOpen(false)}
+                    onUpdate={actualizarResumen}
+                  />
+                ) : isGastosOpen ? (
+                  <Gastos
+                    isOpen={isGastosOpen}
+                    onClose={() => setIsGastosOpen(false)}
+                    onUpdate={actualizarResumen}
+                  />
+                ) : isResumenOpen ? (
+                  <Resumen
+                    isOpen={isResumenOpen}
+                    onClose={() => setIsResumenOpen(false)}
+                  />
+                ) : isExportarOpen ? (
+                  <Exportar
+                    isOpen={isExportarOpen}
+                    onClose={() => setIsExportarOpen(false)}
+                  />
+                ) : (
+                  <LayoutOverlay />
+                )}
               </div>
             </div>
           </div>
         </div>
       </section>
-
     </>
   );
 };

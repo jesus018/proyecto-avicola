@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import authService from '../../services/authService';
+import '../css/login.css';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -27,108 +28,116 @@ const Login = () => {
       await authService.login(formData.email, formData.password);
       navigate('/dashboard');
     } catch (err) {
-      setError('Credenciales inválidas. Verifica tu email y contraseña.');
+      setError(err.message || 'Credenciales inválidas. Verifica tu email y contraseña.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Iniciar Sesión
-          </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Sistema de Gestión de Gallinas Ponedoras
-          </p>
+    <>
+      <section className='login-section'>
+        <div className="login-contenedor">
+          <div className="login-contenido-principal">
+            <div className='login-header'>
+              <h2 className="login-titulo">
+                Iniciar Sesión
+              </h2>
+              <p className="login-subtitulo">
+                Sistema de Gestión de Gallinas Ponedoras
+              </p>
+            </div>
+
+            <form onSubmit={handleSubmit}>
+              {error && (
+                <div className="targeta-contenido_error">
+                  <p className="targeta-error">{error}</p>
+                </div>
+              )}
+
+              <div className='login-row'>
+
+                <div className="targeta-login">
+                  <div>
+                    <label htmlFor="email" className="label-email">
+                      Correo Electrónico
+                    </label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="input-email"
+                      placeholder="tu@email.com"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="password" className="label-password">
+                      Contraseña
+                    </label>
+                    <input
+                      id="password"
+                      name="password"
+                      type="password"
+                      autoComplete="current-password"
+                      required
+                      value={formData.password}
+                      onChange={handleChange}
+                      className="input-password"
+                      placeholder="••••••••"
+                    />
+                  </div>
+                </div>
+
+                <div className="targeta-recordarme">
+                  <div className="div-recordarme">
+                    <input
+                      id="remember-me"
+                      name="remember-me"
+                      type="checkbox"
+                      className="input-recordarme"
+                    />
+                    <label htmlFor="remember-me" className="label-recordarme">
+                      Recordarme
+                    </label>
+                  </div>
+
+                  <div className="div-olvidar-password">
+                    <a href="#" className="link-olvidar-password">
+                      ¿Olvidaste tu contraseña?
+                    </a>
+                  </div>
+                </div>
+
+                <div className='targeta-login'>
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="boton-iniciar_sesion"
+                  >
+                    {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+                  </button>
+                </div>
+
+                <div className="targeta-login">
+                  <p className="p-resgistrar">
+                    ¿No tienes cuenta?{' '}
+                    <Link to="/registro" className="link-registro">
+                      Regístrate aquí
+                    </Link>
+                  </p>
+                </div>
+
+              </div>
+            </form>
+          </div>
         </div>
-
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          {error && (
-            <div className="rounded-md bg-red-50 p-4">
-              <p className="text-sm text-red-800">{error}</p>
-            </div>
-          )}
-
-          <div className="rounded-md shadow-sm space-y-4">
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Correo Electrónico
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                value={formData.email}
-                onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                placeholder="tu@email.com"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Contraseña
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                required
-                value={formData.password}
-                onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                placeholder="••••••••"
-              />
-            </div>
-          </div>
-
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <input
-                id="remember-me"
-                name="remember-me"
-                type="checkbox"
-                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-              />
-              <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                Recordarme
-              </label>
-            </div>
-
-            <div className="text-sm">
-              <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
-                ¿Olvidaste tu contraseña?
-              </a>
-            </div>
-          </div>
-
-          <div>
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-gray-400"
-            >
-              {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
-            </button>
-          </div>
-
-          <div className="text-center">
-            <p className="text-sm text-gray-600">
-              ¿No tienes cuenta?{' '}
-              <Link to="/registro" className="font-medium text-blue-600 hover:text-blue-500">
-                Regístrate aquí
-              </Link>
-            </p>
-          </div>
-        </form>
-      </div>
-    </div>
+      </section>
+    </>
   );
 };
 
