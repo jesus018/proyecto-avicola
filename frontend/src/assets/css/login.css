@@ -1,0 +1,87 @@
+.login-section {
+  min-height: 23vh;
+  background: #f8f9fa;
+}
+
+.login-contenedor {
+  min-height: 23vh;
+}
+
+.login-contenido-principal {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1.5rem;
+  display: grid;
+  place-items: center;
+}
+
+.login-header {
+  padding: 1.5rem;
+}
+
+.targeta-login {
+  padding: 1.1rem;
+}
+
+.login-titulo {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff9a56 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.login-subtitulo {
+  color: #666;
+  font-size: 1rem;
+}
+
+.targeta-login {
+  margin-bottom: 10px;
+}
+
+.targeta-login label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+.targeta-login input,
+.targeta-login select {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.targeta-login input:focus,
+.targeta-login select:focus {
+  outline: none;
+  border-color: #ff6b35;
+}
+
+.boton-iniciar_sesion {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff9a56 100%);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.boton-iniciar_sesion:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+}
