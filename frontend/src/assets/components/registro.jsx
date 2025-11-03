@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import authService from '../../services/authService';
+import '../css/registro.css';
 
 const Registro = () => {
   const navigate = useNavigate();
@@ -45,28 +46,28 @@ const Registro = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Registro de Usuario
-          </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Sistema de Gestión de Gallinas Ponedoras
-          </p>
+    <div className="registro-contenedor">
+      <div className="registro-wrapper">
+        {/* Encabezado */}
+        <div className="registro-header">
+          <h2 className="registro-titulo">Registro de Usuario</h2>
+          <p className="registro-subtitulo">Sistema de Gestión de Gallinas Ponedoras</p>
         </div>
 
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          {error && (
-            <div className="rounded-md bg-red-50 p-4">
-              <p className="text-sm text-red-800">{error}</p>
-            </div>
-          )}
+        {/* Formulario */}
+        <div className="registro-form-contenedor">
+          <form className="registro-form" onSubmit={handleSubmit}>
+            {/* Mensaje de error */}
+            {error && (
+              <div className="registro-error">
+                {error}
+              </div>
+            )}
 
-          <div className="rounded-md shadow-sm space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label htmlFor="first_name" className="block text-sm font-medium text-gray-700">
+            {/* Nombres y Apellidos */}
+            <div className="registro-grid">
+              <div className="registro-grupo">
+                <label htmlFor="first_name" className="registro-label">
                   Nombres *
                 </label>
                 <input
@@ -76,12 +77,12 @@ const Registro = () => {
                   required
                   value={formData.first_name}
                   onChange={handleChange}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="registro-input"
                 />
               </div>
 
-              <div>
-                <label htmlFor="last_name" className="block text-sm font-medium text-gray-700">
+              <div className="registro-grupo">
+                <label htmlFor="last_name" className="registro-label">
                   Apellidos *
                 </label>
                 <input
@@ -91,13 +92,14 @@ const Registro = () => {
                   required
                   value={formData.last_name}
                   onChange={handleChange}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="registro-input"
                 />
               </div>
             </div>
 
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            {/* Email */}
+            <div className="registro-grupo">
+              <label htmlFor="email" className="registro-label">
                 Correo Electrónico *
               </label>
               <input
@@ -107,12 +109,14 @@ const Registro = () => {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                className="registro-input"
+                placeholder="ejemplo@correo.com"
               />
             </div>
 
-            <div>
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+            {/* Username */}
+            <div className="registro-grupo">
+              <label htmlFor="username" className="registro-label">
                 Nombre de Usuario *
               </label>
               <input
@@ -122,12 +126,14 @@ const Registro = () => {
                 required
                 value={formData.username}
                 onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                className="registro-input"
+                placeholder="usuario123"
               />
             </div>
 
-            <div>
-              <label htmlFor="telefono" className="block text-sm font-medium text-gray-700">
+            {/* Teléfono */}
+            <div className="registro-grupo">
+              <label htmlFor="telefono" className="registro-label">
                 Teléfono
               </label>
               <input
@@ -137,89 +143,96 @@ const Registro = () => {
                 value={formData.telefono}
                 onChange={handleChange}
                 placeholder="+573001234567"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                className="registro-input"
               />
             </div>
 
-            <div>
-              <label htmlFor="nombre_granja" className="block text-sm font-medium text-gray-700">
-                Nombre de la Granja
-              </label>
-              <input
-                id="nombre_granja"
-                name="nombre_granja"
-                type="text"
-                value={formData.nombre_granja}
-                onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
+            {/* Nombre Granja y Ubicación */}
+            <div className="registro-grid">
+              <div className="registro-grupo">
+                <label htmlFor="nombre_granja" className="registro-label">
+                  Nombre de la Granja
+                </label>
+                <input
+                  id="nombre_granja"
+                  name="nombre_granja"
+                  type="text"
+                  value={formData.nombre_granja}
+                  onChange={handleChange}
+                  className="registro-input"
+                  placeholder="Mi Granja"
+                />
+              </div>
+
+              <div className="registro-grupo">
+                <label htmlFor="ubicacion" className="registro-label">
+                  Ubicación
+                </label>
+                <input
+                  id="ubicacion"
+                  name="ubicacion"
+                  type="text"
+                  value={formData.ubicacion}
+                  onChange={handleChange}
+                  placeholder="Ciudad, Depto"
+                  className="registro-input"
+                />
+              </div>
             </div>
 
-            <div>
-              <label htmlFor="ubicacion" className="block text-sm font-medium text-gray-700">
-                Ubicación
-              </label>
-              <input
-                id="ubicacion"
-                name="ubicacion"
-                type="text"
-                value={formData.ubicacion}
-                onChange={handleChange}
-                placeholder="Ciudad, Departamento"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
+            {/* Contraseñas */}
+            <div className="registro-grid">
+              <div className="registro-grupo">
+                <label htmlFor="password" className="registro-label">
+                  Contraseña *
+                </label>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  required
+                  value={formData.password}
+                  onChange={handleChange}
+                  className="registro-input"
+                />
+              </div>
+
+              <div className="registro-grupo">
+                <label htmlFor="password2" className="registro-label">
+                  Confirmar Contraseña *
+                </label>
+                <input
+                  id="password2"
+                  name="password2"
+                  type="password"
+                  required
+                  value={formData.password2}
+                  onChange={handleChange}
+                  className="registro-input"
+                />
+              </div>
             </div>
 
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Contraseña *
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                required
-                value={formData.password}
-                onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="password2" className="block text-sm font-medium text-gray-700">
-                Confirmar Contraseña *
-              </label>
-              <input
-                id="password2"
-                name="password2"
-                type="password"
-                required
-                value={formData.password2}
-                onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-          </div>
-
-          <div>
+            {/* Botón de envío */}
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-gray-400"
+              className="registro-btn"
             >
               {loading ? 'Registrando...' : 'Registrarse'}
             </button>
-          </div>
 
-          <div className="text-center">
-            <p className="text-sm text-gray-600">
-              ¿Ya tienes cuenta?{' '}
-              <Link to="/login" className="font-medium text-blue-600 hover:text-blue-500">
-                Inicia sesión aquí
-              </Link>
-            </p>
-          </div>
-        </form>
+            {/* Footer */}
+            <div className="registro-footer">
+              <p className="registro-footer-texto">
+                ¿Ya tienes cuenta?{' '}
+                <Link to="/login" className="registro-link">
+                  Inicia sesión aquí
+                </Link>
+              </p>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
