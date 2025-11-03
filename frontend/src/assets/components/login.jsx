@@ -35,109 +35,101 @@ const Login = () => {
   };
 
   return (
-    <>
-      <section className='login-section'>
-        <div className="login-contenedor">
-          <div className="login-contenido-principal">
-            <div className='login-header'>
-              <h2 className="login-titulo">
-                Iniciar Sesión
-              </h2>
-              <p className="login-subtitulo">
-                Sistema de Gestión de Gallinas Ponedoras
-              </p>
+    <div className="login-contenedor">
+      <div className="login-wrapper">
+        {/* Encabezado */}
+        <div className="login-header">
+          <h2 className="login-titulo">Iniciar Sesión</h2>
+          <p className="login-subtitulo">Sistema de Gestión de Gallinas Ponedoras</p>
+        </div>
+
+        {/* Formulario */}
+        <div className="login-form-contenedor">
+          <form className="login-form" onSubmit={handleSubmit}>
+            {/* Mensaje de error */}
+            {error && (
+              <div className="login-error">
+                {error}
+              </div>
+            )}
+
+            {/* Email */}
+            <div className="login-grupo">
+              <label htmlFor="email" className="login-label">
+                Correo Electrónico
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                value={formData.email}
+                onChange={handleChange}
+                className="login-input"
+                placeholder="tu@email.com"
+              />
             </div>
 
-            <form onSubmit={handleSubmit}>
-              {error && (
-                <div className="targeta-contenido_error">
-                  <p className="targeta-error">{error}</p>
-                </div>
-              )}
+            {/* Contraseña */}
+            <div className="login-grupo">
+              <label htmlFor="password" className="login-label">
+                Contraseña
+              </label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autoComplete="current-password"
+                required
+                value={formData.password}
+                onChange={handleChange}
+                className="login-input"
+                placeholder="••••••••"
+              />
+            </div>
 
-              <div className='login-row'>
-
-                <div className="targeta-login">
-                  <div>
-                    <label htmlFor="email" className="label-email">
-                      Correo Electrónico
-                    </label>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      autoComplete="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="input-email"
-                      placeholder="tu@email.com"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="password" className="label-password">
-                      Contraseña
-                    </label>
-                    <input
-                      id="password"
-                      name="password"
-                      type="password"
-                      autoComplete="current-password"
-                      required
-                      value={formData.password}
-                      onChange={handleChange}
-                      className="input-password"
-                      placeholder="••••••••"
-                    />
-                  </div>
-                </div>
-
-                <div className="targeta-recordarme">
-                  <div className="div-recordarme">
-                    <input
-                      id="remember-me"
-                      name="remember-me"
-                      type="checkbox"
-                      className="input-recordarme"
-                    />
-                    <label htmlFor="remember-me" className="label-recordarme">
-                      Recordarme
-                    </label>
-                  </div>
-
-                  <div className="div-olvidar-password">
-                    <a href="#" className="link-olvidar-password">
-                      ¿Olvidaste tu contraseña?
-                    </a>
-                  </div>
-                </div>
-
-                <div className='targeta-login'>
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="boton-iniciar_sesion"
-                  >
-                    {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
-                  </button>
-                </div>
-
-                <div className="targeta-login">
-                  <p className="p-resgistrar">
-                    ¿No tienes cuenta?{' '}
-                    <Link to="/registro" className="link-registro">
-                      Regístrate aquí
-                    </Link>
-                  </p>
-                </div>
-
+            {/* Recordarme y olvidar contraseña */}
+            <div className="login-opciones">
+              <div className="login-recordarme">
+                <input
+                  id="remember-me"
+                  name="remember-me"
+                  type="checkbox"
+                  className="login-checkbox"
+                />
+                <label htmlFor="remember-me" className="login-recordarme-label">
+                  Recordarme
+                </label>
               </div>
-            </form>
-          </div>
+
+              <a href="#" className="login-olvidar-password">
+                ¿Olvidaste tu contraseña?
+              </a>
+            </div>
+
+            {/* Botón de envío */}
+            <button
+              type="submit"
+              disabled={loading}
+              className="login-btn"
+            >
+              {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+            </button>
+
+            {/* Footer */}
+            <div className="login-footer">
+              <p className="login-footer-texto">
+                ¿No tienes cuenta?{' '}
+                <Link to="/registro" className="login-link">
+                  Regístrate aquí
+                </Link>
+              </p>
+            </div>
+          </form>
         </div>
-      </section>
-    </>
+      </div>
+    </div>
   );
 };
 
