@@ -27,12 +27,12 @@
 * 📱 Diseño responsive
 
 ## 🛠️Tecnologias Utilizadas
-### Frontend
+Frontend
 * React 19.1.1
 * React Router DOM 7.9.4
 * Axios 1.13.0
 * Vite 7.1.7
-### Backend
+Backend
 * Python 3.x
 * Django 5.0.1
 * Django REST Framework 3.14.0
@@ -48,13 +48,13 @@ Antes de comenzar, asegúrate de tener instalado:
 * Git
 
 ## 🚀Instalación
-### 1. Clonar el Repositorio
+1. Clonar el Repositorio
 ``` code:
 git clone <url-del-repositorio>
 cd <nombre-del-proyecto>
 ```
-### 2. Configurar PostgreSQL con Docker
-### Instalar Docker Desktop
+2. Configurar PostgreSQL con Docker
+Instalar Docker Desktop
 1. Descarga Docker Desktop desde docker.com
 2. Instala siguiendo las instrucciones de tu sistema operativo
 3. Verifica la instalación:
@@ -62,7 +62,7 @@ cd <nombre-del-proyecto>
 docker --version
 docker-compose --version
 ```
-### Levantar los Servicios de Base de Datos
+Levantar los Servicios de Base de Datos
 ``` code:
 # Desde la raíz del proyecto
 docker-compose up -d
@@ -70,13 +70,13 @@ docker-compose up -d
 Esto iniciará:
 * PostgreSQL en el puerto 5432
 * pgAdmin en el puerto 5050 (interfaz web para administrar la BD)
-### Acceder a pgAdmin
+Acceder a pgAdmin
 1. Abre tu navegador en http://localhost:5050
 2. Credenciales (definidas en .env):
    * Email: tu.correo@correo.com
    * Password: tu-password-segura
-### 3. Configurar el Backend (Django)
-### Crear y Activar Entorno Virtual
+3. Configurar el Backend (Django)
+Crear y Activar Entorno Virtual
 ``` code:
 cd backend
 
@@ -88,11 +88,11 @@ python -m venv .venv
 python3 -m venv .venv
 source .venv/bin/activate
 ```
-### Instalar Dependencias
+Instalar Dependencias
 ``` code:
 pip install -r requirements.txt
 ```
-### Configurar Variables de Entorno
+Configurar Variables de Entorno
 Crea un archivo .env en la raíz del proyecto (mismo nivel que docker-compose.yml):
 ``` code:
 # Base de datos PostgreSQL
@@ -129,3 +129,4 @@ EMAIL_USE_TLS=True
 EMAIL_HOST_USER=tu_email@gmail.com
 EMAIL_HOST_PASSWORD=tu_password
 ```
+
