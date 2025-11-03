@@ -1,7 +1,7 @@
-<p align="center">
+<div align="center">
   <h1> 🐔 Sistema de Control Financiero - Empresa de Gallinas Ponedoras </h1>
-  <h4>Sistema web completo para la gestión financiera de empresas avícolas, desarrollado con React (frontend) y Django REST Framework (backend).</h4>
-</p>
+  <p>Sistema web completo para la gestión financiera de empresas avícolas, desarrollado con React (frontend) y Django REST Framework (backend).<p>
+</div>
 
 ## Índice
 * [Características](#características)
@@ -27,25 +27,25 @@
 * 📱 Diseño responsive
 
 ## 🛠️Tecnologias Utilizadas
-Frontend
-* React 19.1.1
-* React Router DOM 7.9.4
-* Axios 1.13.0
-* Vite 7.1.7
-Backend
-* Python 3.x
-* Django 5.0.1
-* Django REST Framework 3.14.0
-* PostgreSQL 15
-* JWT Authentication
-* drf-yasg (Swagger/OpenAPI)
+* Frontend
+  * React 19.1.1
+  * React Router DOM 7.9.4
+  * Axios 1.13.0
+  * Vite 7.1.7
+* Backend
+  * Python 3.x
+  * Django 5.0.1
+  * Django REST Framework 3.14.0
+  * PostgreSQL 15
+  * JWT Authentication
+  * drf-yasg (Swagger/OpenAPI)
 
 ## 📦Requisitos Previos
 Antes de comenzar, asegúrate de tener instalado:
-* Node.js (v20.19.0 o superior)
-* Python (3.10 o superior)
-* Docker Desktop (para PostgreSQL)
-* Git
+  * Node.js (v20.19.0 o superior)
+  * Python (3.10 o superior)
+  * Docker Desktop (para PostgreSQL)
+  * Git
 
 ## 🚀Instalación
 1. Clonar el Repositorio
@@ -54,10 +54,10 @@ git clone <url-del-repositorio>
 cd <nombre-del-proyecto>
 ```
 2. Configurar PostgreSQL con Docker
-Instalar Docker Desktop
-1. Descarga Docker Desktop desde docker.com
-2. Instala siguiendo las instrucciones de tu sistema operativo
-3. Verifica la instalación:
+  Instalar Docker Desktop
+    1. Descarga Docker Desktop desde docker.com
+    2. Instala siguiendo las instrucciones de tu sistema operativo
+    3. Verifica la instalación:
 ``` code:
 docker --version
 docker-compose --version
@@ -68,14 +68,14 @@ Levantar los Servicios de Base de Datos
 docker-compose up -d
 ```
 Esto iniciará:
-* PostgreSQL en el puerto 5432
-* pgAdmin en el puerto 5050 (interfaz web para administrar la BD)
+  * PostgreSQL en el puerto 5432
+  * pgAdmin en el puerto 5050 (interfaz web para administrar la BD)
 Acceder a pgAdmin
-1. Abre tu navegador en http://localhost:5050
-2. Credenciales (definidas en .env):
-   * Email: tu.correo@correo.com
-   * Password: tu-password-segura
-3. Configurar el Backend (Django)
+  1. Abre tu navegador en http://localhost:5050
+  2. Credenciales (definidas en .env):
+     * Email: tu.correo@correo.com
+     * Password: tu-password-segura
+  3. Configurar el Backend (Django)
 Crear y Activar Entorno Virtual
 ``` code:
 cd backend
@@ -129,4 +129,5 @@ EMAIL_USE_TLS=True
 EMAIL_HOST_USER=tu_email@gmail.com
 EMAIL_HOST_PASSWORD=tu_password
 ```
+
 
