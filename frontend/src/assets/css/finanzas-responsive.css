@@ -1,0 +1,339 @@
+/* Estilos responsivos para Ingresos y Gastos */
+
+/* Secciones de construcción y crianza */
+.construction-section,
+.poultry-section {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.section-title {
+  color: #333;
+  font-size: 1.3em;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #ff6b35;
+}
+
+/* Formularios responsivos */
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  align-items: end;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #ff6b35;
+}
+
+/* Botones */
+.btn {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff9a56 100%);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 100%;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.delete-btn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.delete-btn:hover:not(:disabled) {
+  background: #c0392b;
+  transform: translateY(-1px);
+}
+
+/* Tablas responsivas */
+.table-container {
+  overflow-x: auto;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  min-width: 600px;
+}
+
+.table th,
+.table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.table th {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.table tr:hover {
+  background: #f8f9fa;
+}
+
+.table td {
+  font-size: 14px;
+}
+
+/* Responsive para tablets */
+@media (max-width: 768px) {
+
+  .construction-section,
+  .poultry-section {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-size: 1.1em;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-group label {
+    font-size: 13px;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .table {
+    min-width: 500px;
+    font-size: 13px;
+  }
+
+  .table th,
+  .table td {
+    padding: 10px 8px;
+  }
+
+  .table th {
+    font-size: 12px;
+  }
+
+  .delete-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+/* Responsive para móviles */
+@media (max-width: 480px) {
+
+  .construction-section,
+  .poultry-section {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+  }
+
+  .section-title {
+    font-size: 1em;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+  }
+
+  .form-row {
+    gap: 8px;
+  }
+
+  .form-group {
+    margin-bottom: 10px;
+  }
+
+  .form-group label {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 6px;
+  }
+
+  .btn {
+    padding: 10px 16px;
+    font-size: 13px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  /* Tabla con scroll horizontal y estilos optimizados */
+  .table-container {
+    margin-top: 15px;
+    border-radius: 8px;
+  }
+
+  .table {
+    min-width: 100%;
+    font-size: 12px;
+  }
+
+  .table th,
+  .table td {
+    padding: 8px 6px;
+    font-size: 11px;
+  }
+
+  .table th {
+    font-size: 10px;
+    letter-spacing: 0.3px;
+  }
+
+  /* Hacer que columnas de acción sean más compactas */
+  .table td:last-child,
+  .table th:last-child {
+    text-align: center;
+    width: 80px;
+  }
+
+  .delete-btn {
+    padding: 5px 10px;
+    font-size: 11px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  /* Optimizar columnas de números */
+  .table td:nth-child(3),
+  .table td:nth-child(4),
+  .table td:nth-child(5) {
+    text-align: right;
+    font-weight: 500;
+  }
+}
+
+/* Estilos para mensajes de error y estados de carga */
+.mensaje-error {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border-left: 4px solid #dc3545;
+  font-size: 14px;
+}
+
+.mensaje-cargando {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+  font-size: 14px;
+}
+
+.mensaje-vacio {
+  text-align: center;
+  padding: 20px;
+  color: #999;
+  font-style: italic;
+  font-size: 14px;
+}
+
+/* Responsive muy pequeño (móviles antiguos) */
+@media (max-width: 360px) {
+  .section-title {
+    font-size: 0.9em;
+  }
+
+  .form-group input,
+  .form-group select {
+    font-size: 13px;
+  }
+
+  .btn {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  .table {
+    font-size: 10px;
+  }
+
+  .table th,
+  .table td {
+    padding: 6px 4px;
+  }
+
+  .delete-btn {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+}
