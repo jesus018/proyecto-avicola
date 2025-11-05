@@ -107,8 +107,8 @@ Crea un archivo `.env` en la raíz del proyecto (mismo nivel que `docker-compose
 ``` code:
 # Base de datos PostgreSQL
 DATABASE_ENGINE=django.db.backends.postgresql
-DATABASE_NAME=avicola_db
-DATABASE_USERNAME=avicola_user
+DATABASE_NAME=NOMBRE-BASE
+DATABASE_USERNAME=NOMBRE-BASE-USER
 DATABASE_PASSWORD=TuPasswordSeguro123!
 DATABASE_HOST=localhost
 DATABASE_PORT=5432
@@ -524,4 +524,5 @@ Desarrollado por
 - GitHub: @jesus018
 
 ##
+
 ⭐ Si este proyecto te fue útil, considera darle una estrella en GitHub!
