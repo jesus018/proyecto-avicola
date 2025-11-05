@@ -40,6 +40,7 @@ const Ingresos = ({ isOpen, onUpdate }) => {
       await finanzasService.createVenta(formVenta);
       setFormVenta({ cliente: '', cantidad: '', precio_unitario: '' });
       cargarVentas();
+      if (onUpdate) onUpdate();
       alert('Venta registrada exitosamente');
     } catch (err) {
       const errorMsg = err.response?.data?.cantidad?.[0]
@@ -56,9 +57,10 @@ const Ingresos = ({ isOpen, onUpdate }) => {
         await finanzasService.deleteVenta(id);
         cargarVentas();
         alert('Venta eliminada exitosamente');
-        if (onUpdate) onUpdate();
+
       } catch (err) {
-        alert('Error al eliminar la venta');
+        alert('Error al eliminar la venta: ' + (err?.message || 'Error desconocido'));
+        console.error(err);
       }
     }
   };
