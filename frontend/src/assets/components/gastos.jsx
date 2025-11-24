@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import "../css/finanzas-responsive.css";
 import PropTypes from 'prop-types';
 import finanzasService from '../../services/finanzasService';
 
@@ -155,47 +156,50 @@ const Gastos = ({ isOpen, onUpdate }) => {
               </div>
             </form>
 
-            <table className="table" id="construccion-table">
-              <thead>
-                <tr>
-                  <th>Fecha</th>
-                  <th>Descripción</th>
-                  <th>Cantidad</th>
-                  <th>Precio Unit.</th>
-                  <th>Total</th>
-                  <th>Acción</th>
-                </tr>
-              </thead>
-              <tbody>
-                {loading && (
+            <div className='table-container'>
+              <table className="table" id="construccion-table">
+                <thead>
                   <tr>
-                    <td colSpan="6" style={{ textAlign: 'center' }}>Cargando...</td>
+                    <th>Fecha</th>
+                    <th>Descripción</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unit.</th>
+                    <th>Total</th>
+                    <th>Acción</th>
                   </tr>
-                )}
-                {!loading && gastosConstruccion.length === 0 && (
-                  <tr>
-                    <td colSpan="6" style={{ textAlign: 'center' }}>No hay gastos registrados</td>
-                  </tr>
-                )}
-                {!loading && gastosConstruccion.map((gasto) => (
-                  <tr key={gasto.id}>
-                    <td>{new Date(gasto.fecha).toLocaleDateString()}</td>
-                    <td>{gasto.descripcion}</td>
-                    <td>{gasto.cantidad}</td>
-                    <td>${parseFloat(gasto.precio_unitario).toFixed(2)}</td>
-                    <td>${parseFloat(gasto.total).toFixed(2)}</td>
-                    <td>
-                      <button
-                        className="delete-btn"
-                        onClick={() => eliminarConstruccion(gasto.id)}
-                      >
-                        Eliminar
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {loading && (
+                    <tr>
+                      <td colSpan="6" style={{ textAlign: 'center' }}>Cargando...</td>
+                    </tr>
+                  )}
+                  {!loading && gastosConstruccion.length === 0 && (
+                    <tr>
+                      <td colSpan="6" style={{ textAlign: 'center' }}>No hay gastos registrados</td>
+                    </tr>
+                  )}
+                  {!loading && gastosConstruccion.map((gasto) => (
+                    <tr key={gasto.id}>
+                      <td>{new Date(gasto.fecha).toLocaleDateString()}</td>
+                      <td>{gasto.descripcion}</td>
+                      <td>{gasto.cantidad}</td>
+                      <td>${parseFloat(gasto.precio_unitario).toFixed(2)}</td>
+                      <td>${parseFloat(gasto.total).toFixed(2)}</td>
+                      <td>
+                        <button
+                          className="delete-btn"
+                          onClick={() => eliminarConstruccion(gasto.id)}
+                        >
+                          Eliminar
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
           </div>
 
           {/* GASTOS DE CRIANZA */}

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import '../css/finanzas-responsive.css'
 import finanzasService from '../../services/finanzasService';
 
 const Ingresos = ({ isOpen, onUpdate }) => {
@@ -39,6 +40,7 @@ const Ingresos = ({ isOpen, onUpdate }) => {
       await finanzasService.createVenta(formVenta);
       setFormVenta({ cliente: '', cantidad: '', precio_unitario: '' });
       cargarVentas();
+      if (onUpdate) onUpdate();
       alert('Venta registrada exitosamente');
     } catch (err) {
       const errorMsg = err.response?.data?.cantidad?.[0]
@@ -55,9 +57,10 @@ const Ingresos = ({ isOpen, onUpdate }) => {
         await finanzasService.deleteVenta(id);
         cargarVentas();
         alert('Venta eliminada exitosamente');
-        if (onUpdate) onUpdate();
+
       } catch (err) {
-        alert('Error al eliminar la venta');
+        alert('Error al eliminar la venta: ' + (err?.message || 'Error desconocido'));
+        console.error(err);
       }
     }
   };
@@ -128,48 +131,51 @@ const Ingresos = ({ isOpen, onUpdate }) => {
             </div>
           </form>
 
-          <table className="table" id="ventas-table">
-            <thead>
-              <tr>
-                <th>Fecha</th>
-                <th>Cliente</th>
-                <th>Cantidad</th>
-                <th>Precio Unit.</th>
-                <th>Total</th>
-                <th>Acción</th>
-              </tr>
-            </thead>
-            <tbody>
-              {loading && (
+          <div className='table-container'>
+            <table className="table" id="ventas-table">
+              <thead>
                 <tr>
-                  <td colSpan="6" style={{ textAlign: 'center' }}>Cargando...</td>
+                  <th>Fecha</th>
+                  <th>Cliente</th>
+                  <th>Cantidad</th>
+                  <th>Precio Unit.</th>
+                  <th>Total</th>
+                  <th>Acción</th>
                 </tr>
-              )}
-              {!loading && ventas.length === 0 && (
-                <tr>
-                  <td colSpan="6" style={{ textAlign: 'center' }}>No hay ventas registradas</td>
-                </tr>
-              )}
-              {!loading && ventas.map((venta) => (
-                <tr key={venta.id}>
-                  <td>{new Date(venta.fecha).toLocaleDateString()}</td>
-                  <td>{venta.cliente}</td>
-                  <td>{venta.cantidad}</td>
-                  <td>${parseFloat(venta.precio_unitario).toFixed(2)}</td>
-                  <td>${parseFloat(venta.total).toFixed(2)}</td>
-                  <td>
-                    <button
-                      className="delete-btn"
-                      onClick={() => eliminarVenta(venta.id)}
-                      disabled={loading}
-                    >
-                      Eliminar
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {loading && (
+                  <tr>
+                    <td colSpan="6" style={{ textAlign: 'center' }}>Cargando...</td>
+                  </tr>
+                )}
+                {!loading && ventas.length === 0 && (
+                  <tr>
+                    <td colSpan="6" style={{ textAlign: 'center' }}>No hay ventas registradas</td>
+                  </tr>
+                )}
+                {!loading && ventas.map((venta) => (
+                  <tr key={venta.id}>
+                    <td>{new Date(venta.fecha).toLocaleDateString()}</td>
+                    <td>{venta.cliente}</td>
+                    <td>{venta.cantidad}</td>
+                    <td>${parseFloat(venta.precio_unitario).toFixed(2)}</td>
+                    <td>${parseFloat(venta.total).toFixed(2)}</td>
+                    <td>
+                      <button
+                        className="delete-btn"
+                        onClick={() => eliminarVenta(venta.id)}
+                        disabled={loading}
+                      >
+                        Eliminar
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
         </div>
       </section>
     </>

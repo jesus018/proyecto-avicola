@@ -103,9 +103,9 @@ const Login = () => {
                 </label>
               </div>
 
-              <a href="#" className="login-olvidar-password">
+              {/* <a href="#" className="login-olvidar-password">
                 ¿Olvidaste tu contraseña?
-              </a>
+              </a> */}
             </div>
 
             {/* Botón de envío */}
@@ -118,14 +118,14 @@ const Login = () => {
             </button>
 
             {/* Footer */}
-            <div className="login-footer">
+            {/* <div className="login-footer">
               <p className="login-footer-texto">
                 ¿No tienes cuenta?{' '}
                 <Link to="/registro" className="login-link">
                   Regístrate aquí
                 </Link>
               </p>
-            </div>
+            </div> */}
           </form>
         </div>
       </div>
