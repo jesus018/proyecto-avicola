@@ -6,3 +6,19 @@
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
+
+/* Responsive para tablets */
+@media (max-width: 768px) {
+  #root {
+    max-width: 100%;
+    margin: 0;
+    border-radius: 0;
+  }
+}
+
+/* Responsive para móviles */
+@media (max-width: 480px) {
+  #root {
+    box-shadow: none;
+  }
+}
