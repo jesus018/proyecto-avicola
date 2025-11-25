@@ -252,3 +252,233 @@ body {
     transform: translateX(0);
   }
 }
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 1024px) {
+  body {
+    padding: 15px;
+  }
+
+  .summary-cards {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+
+  .form-row {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+  }
+}
+
+/* Tablets pequeñas */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  .tab-content {
+    padding: 20px;
+  }
+
+  .summary-cards {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+
+  .summary-card {
+    padding: 20px;
+  }
+
+  .summary-card h3 {
+    font-size: 1em;
+  }
+
+  .summary-card .amount {
+    font-size: 1.8em;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .form-group label {
+    font-size: 14px;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .section-title {
+    font-size: 1.2em;
+  }
+
+  .construction-section,
+  .poultry-section {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+
+  /* Tabla responsive con scroll horizontal */
+  .table {
+    font-size: 14px;
+  }
+
+  .table th,
+  .table td {
+    padding: 12px 10px;
+  }
+
+  .notification {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+}
+
+/* Móviles */
+@media (max-width: 480px) {
+  body {
+    padding: 5px;
+  }
+
+  .tab-content {
+    padding: 15px;
+  }
+
+  .summary-cards {
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+
+  .summary-card {
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  .summary-card h3 {
+    font-size: 0.9em;
+    margin-bottom: 8px;
+  }
+
+  .summary-card .amount {
+    font-size: 1.5em;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-group label {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 6px;
+  }
+
+  .btn {
+    padding: 10px 16px;
+    font-size: 13px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  .section-title {
+    font-size: 1.1em;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+  }
+
+  .construction-section,
+  .poultry-section {
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+  }
+
+  .export-section {
+    padding: 15px;
+    margin-top: 15px;
+  }
+
+  /* Tabla responsive */
+  .table {
+    font-size: 12px;
+  }
+
+  .table th,
+  .table td {
+    padding: 10px 8px;
+    font-size: 12px;
+  }
+
+  .table th {
+    font-size: 11px;
+    letter-spacing: 0.3px;
+  }
+
+  .delete-btn {
+    padding: 5px 10px;
+    font-size: 11px;
+    border-radius: 4px;
+  }
+
+  .notification {
+    top: 5px;
+    right: 5px;
+    left: 5px;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 6px;
+  }
+}
+
+/* Móviles muy pequeños */
+@media (max-width: 360px) {
+  .summary-card .amount {
+    font-size: 1.3em;
+  }
+
+  .form-group input,
+  .form-group select {
+    font-size: 13px;
+  }
+
+  .btn {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  .table {
+    font-size: 11px;
+  }
+
+  .table th,
+  .table td {
+    padding: 8px 6px;
+    font-size: 11px;
+  }
+
+  .delete-btn {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+}

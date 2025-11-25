@@ -334,7 +334,39 @@
   margin-right: 0.5rem;
 }
 
-/* Responsive */
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablets grandes y pantallas medianas */
+@media (max-width: 1024px) {
+  .navbar-titulo h1 {
+    font-size: 2.2em;
+  }
+
+  .navbar-titulo p {
+    font-size: 1.1em;
+  }
+
+  .dashboard-contenido-principal {
+    padding: 1.25rem;
+  }
+
+  .estadisticas-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .tarjeta-bienvenida {
+    flex-direction: column;
+  }
+
+  .tarjeta-acciones {
+    float: none;
+    margin: 0;
+    padding: 1.5rem;
+    width: 100%;
+  }
+}
+
+/* Tablets */
 @media (max-width: 768px) {
   .navbar-header {
     flex-direction: column;
@@ -343,13 +375,58 @@
     gap: 1rem;
   }
 
+  .navbar-titulo {
+    padding: 20px;
+  }
+
   .navbar-titulo h1 {
-    font-size: 1rem;
+    font-size: 1.8em;
+    margin-bottom: 8px;
+  }
+
+  .navbar-titulo p {
+    font-size: 1em;
   }
 
   .navbar-acciones {
     width: 100%;
     justify-content: space-between;
+  }
+
+  .dashboard-contenido-principal {
+    padding: 1rem;
+  }
+
+  .dashboard-contenido-interno {
+    padding: 1rem 0.75rem;
+  }
+
+  .tarjeta-bienvenida {
+    margin-bottom: 1.25rem;
+  }
+
+  .tarjeta-contenido_bienvenido {
+    float: none;
+    padding: 1.25rem;
+  }
+
+  .tarjeta-contenido {
+    padding: 1.25rem;
+  }
+
+  .tarjeta-acciones {
+    float: none;
+    margin: 0;
+    padding: 0 1.25rem 1.25rem;
+  }
+
+  .bienvenida-titulo {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .bienvenida-texto {
+    font-size: 0.9rem;
   }
 
   .perfil-grid {
@@ -358,18 +435,47 @@
 
   .estadisticas-grid {
     grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .estadistica-contenido {
+    padding: 1.25rem;
+  }
+
+  .estadistica-monto {
+    font-size: 1.75rem;
   }
 
   .acciones-grid {
     grid-template-columns: 1fr;
+    gap: 0.75rem;
   }
 
-  .bienvenida-titulo {
-    font-size: 1.5rem;
+  .accion-btn {
+    padding: 0.875rem 1rem;
   }
 }
 
+/* Móviles */
 @media (max-width: 480px) {
+  .navbar-titulo {
+    padding: 15px;
+  }
+
+  .navbar-titulo h1 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+  }
+
+  .navbar-titulo p {
+    font-size: 0.9em;
+  }
+
+  .btn-cerrar-sesion {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+  }
+
   .dashboard-contenido-principal {
     padding: 0.75rem;
   }
@@ -378,11 +484,103 @@
     padding: 0.75rem 0.5rem;
   }
 
+  .tarjeta-bienvenida {
+    margin-bottom: 1rem;
+  }
+
+  .tarjeta-contenido_bienvenido {
+    padding: 1rem;
+  }
+
   .tarjeta-contenido {
     padding: 1rem;
   }
 
+  .tarjeta-acciones {
+    padding: 0 1rem 1rem;
+  }
+
+  .bienvenida-titulo {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .bienvenida-texto {
+    font-size: 0.85rem;
+  }
+
+  .perfil-titulo {
+    font-size: 1rem;
+  }
+
+  .perfil-grid {
+    gap: 0.75rem;
+  }
+
+  .campo-etiqueta {
+    font-size: 0.8rem;
+  }
+
+  .campo-valor {
+    font-size: 0.9rem;
+  }
+
+  .estadisticas-grid {
+    gap: 1rem;
+  }
+
+  .estadistica-contenido {
+    padding: 1rem;
+  }
+
+  .estadistica-etiqueta {
+    font-size: 0.8rem;
+  }
+
   .estadistica-monto {
     font-size: 1.5rem;
+  }
+
+  .estadistica-icono {
+    height: 1.25rem;
+    width: 1.25rem;
+  }
+
+  .acciones-titulo {
+    font-size: 1rem;
+  }
+
+  .accion-btn {
+    padding: 0.75rem 0.875rem;
+    font-size: 0.8rem;
+  }
+
+  .accion-icono {
+    height: 1rem;
+    width: 1rem;
+  }
+}
+
+/* Móviles muy pequeños */
+@media (max-width: 360px) {
+  .navbar-titulo h1 {
+    font-size: 1.3em;
+  }
+
+  .navbar-titulo p {
+    font-size: 0.85em;
+  }
+
+  .bienvenida-titulo {
+    font-size: 1.1rem;
+  }
+
+  .estadistica-monto {
+    font-size: 1.3rem;
+  }
+
+  .accion-btn {
+    font-size: 0.75rem;
+    padding: 0.65rem 0.75rem;
   }
 }
