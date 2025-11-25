@@ -8,6 +8,7 @@ import Gastos from '../components/gastos';
 import Ingresos from '../components/ingresos';
 import Resumen from '../components/resumen';
 import Exportar from '../components/exportar';
+import FinancialCharts from '../components/FinancialCharts';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -235,6 +236,9 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
+
+              {/* Gráficos Financieros */}
+              <FinancialCharts resumenFinanciero={resumenFinanciero} />
 
               {/* Acciones rápidas */}
               <div className="acciones-rapidas-contenedor">

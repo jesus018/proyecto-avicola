@@ -148,6 +148,76 @@ const finanzasService = {
 
     return response.data;
   },
+
+  // ========== DATOS PARA GRÁFICOS ==========
+  // Obtener todos los gastos (construcción + crianza) para gráficos
+  getGastos: async () => {
+    try {
+      const [construccion, crianza] = await Promise.all([
+        api.get('gastos-construccion/'),
+        api.get('gastos-crianza/')
+      ]);
+
+      // Normalizar la respuesta - puede venir como array directo o dentro de 'results'
+      const dataConstruccion = Array.isArray(construccion.data)
+        ? construccion.data
+        : (construccion.data.results || []);
+
+      const dataCrianza = Array.isArray(crianza.data)
+        ? crianza.data
+        : (crianza.data.results || []);
+
+      // Mapeo de tipos de gasto de crianza a nombres legibles
+      const tiposGastoCrianza = {
+        'pollitos': 'Compra de Pollitos',
+        'concentrado': 'Concentrado/Alimento',
+        'vacunas': 'Vacunas',
+        'medicamentos': 'Medicamentos',
+        'vitaminas': 'Vitaminas/Suplementos',
+        'agua': 'Agua',
+        'electricidad': 'Electricidad',
+        'limpieza': 'Productos de Limpieza',
+        'mantenimiento': 'Mantenimiento Equipos',
+        'otros': 'Otros',
+      };
+
+      // Combinar y normalizar los gastos
+      const gastosConstruccion = dataConstruccion.map(g => ({
+        ...g,
+        categoria: 'Construcción',
+        monto: g.total || 0,
+        tipo: 'construccion'
+      }));
+
+      const gastosCrianza = dataCrianza.map(g => ({
+        ...g,
+        categoria: tiposGastoCrianza[g.tipo] || g.tipo || 'Crianza',
+        monto: g.costo || 0,
+        tipo: 'crianza'
+      }));
+
+      //console.log('Gastos construcción procesados:', gastosConstruccion);
+      //console.log('Gastos crianza procesados:', gastosCrianza);
+
+      return [...gastosConstruccion, ...gastosCrianza];
+    } catch (error) {
+      console.error('Error al obtener gastos:', error);
+      return [];
+    }
+  },
+
+  // Obtener datos históricos para gráficos de tendencias
+  getHistorico: async () => {
+    try {
+      // Intentar obtener datos históricos del backend si existe el endpoint
+      const response = await api.get('resumen/historico/');
+      return response.data;
+    } catch (error) {
+      // Si no existe el endpoint, retornar null para usar datos de ejemplo
+      console.log('Endpoint histórico no disponible');
+      return null;
+    }
+  },
 };
 
 export default finanzasService;
